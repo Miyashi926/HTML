@@ -24,7 +24,7 @@ header h1{
     font-size: 24px; /* 文字の大きさを24pxに */
     font-weight: normal; /* モジの太さを太くしない */
     text-align: center; /* テキストを中央揃えに */
-    font-family: 'Sriracha', cursive;font-family: fantasy;
+    font-family: Sriracha; /*, cursive;font-family: fantasy*/
 }
 .description img{
     float: left;
