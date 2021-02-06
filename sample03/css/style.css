@@ -1,5 +1,7 @@
 @import url(sanitize.css);
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+
+
 body{
     background-color: #f0f0f0; /* 背景色をグレーに */
     padding: 10px; /* 要素内の余白を　10pxに */
@@ -8,7 +10,7 @@ body{
 }
 
 .containar{
-    width: 800px; /* 幅を800pxに */
+    max-width: 800px; /* 最大幅を800pxに */
     margin: 0 auto; /* 左右の余白をオートにして、左右中央揃えに */
     box-shadow: 0 0 10px rgba(0,0,0,.3); /* 影をつける */
 }
@@ -27,6 +29,11 @@ header h1{
 .description img{
     float: left;
     margin: 0 10px 10px 0;
+    transition:opacity 1s ease 0s;
+    /* transition-property: opacity;
+    transition-duration: 1s;
+    transition-timing-function: ease;
+    transition-delay: 0s; */
 }
 .information h1{
     font-size: 18px; /* 文字の大きさを18pxに */
@@ -83,4 +90,28 @@ a{
 footer{
     text-align: center;
     font-size: 80%;
+}
+@media only screen and (min-width:300px) and (max-width:600px){
+    .description img{
+        float: none; /* 回り込みを解除する　*/
+        display: block; /*　表示をブロック状態にする　*/
+        margin: 0 auto; /* 画像を中央に揃える　*/
+    }
+    header{
+        padding: 5px;
+    }
+    header h1{
+        font-size: 12px;
+
+    }
+    .description h1{
+        font-size: 14px;
+    }
+    .songs li{
+        float: none;
+        width: inherit;
+    }
+}
+.description img:hover{
+    opacity:.5;
 }
