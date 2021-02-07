@@ -26,26 +26,55 @@
        </div>
     </div>    
         <script>
-            //ゼロを追加する
-
-            var addZero =function(value){
+            var start; //開始時間（グローバル変数）
+            var addZero = function(value){
                 if(value < 10){
                     value ='0' + value;
                 }
                 return value;
+            };
+
+        var timer_id;
+        document.getElementById('start_stop').addEventListener('click',function(){
+            if (this.innerHTML === 'START'){
+                start =new Date();
+
+                timer_id = setInterval(goTimer,10);
+
+                //ストップボタンにする
+                this.innerHTML ='STOP';
+                this.classList.remove('btn-default');
+                this.classList.add('btn-danger');
+
+            }else{
+                clearInterval(timer_id);
+
+                //STARTボタンにする
+                this.innerHTML ='START';
+                this.classList.remove('btn-danger');
+                this.classList.add('btn-default');
             }
+        });            
 
-            var now  = new Date();
-            var seconds = now.getSeconds();
-            seconds = addZero(seconds);
-            
-            var minutes =now.getMinutes()
-            minutes = addZero(minutes);
-            
-            var hours =now.getHours()
+        //タイマーの処理
+        var goTimer =function(){
+            var now = new Date();
+
+            var milli = now.getTime() - start.getTime(); //差をミリ秒で
+            var seconds = Math.floor(milli / 1000); //秒を取得
+            var minutes = Math.floor(seconds / 60); //分を取得
+            var hours = Math.floor(minutes / 60);　//時を取得
+
+            seconds = seconds - minutes * 60;
+            minutes = minutes - hours * 60;
+
+            //一桁の場合は０を補完
             hours = addZero(hours);
+            minutes = addZero(minutes);
+            seconds = addZero(seconds);
 
-            document.getElementById('timer').innerHTML =hours + ':' + minutes + ':' + seconds;
+            document.getElementById('timer').innerHTML =hours +':' + minutes + ':' + seconds;
+        }
 
         </script>
 </body>
